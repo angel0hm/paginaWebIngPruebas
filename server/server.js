@@ -34,7 +34,24 @@ app.use("/api/checkout", checkoutRouter);
 app.use("/api/auth", authRouter);
 
 // --- Servir frontend ---
-app.use(express.static(path.join(__dirname, "../frontend")));
+app.use(
+  express.static(path.join(__dirname, "../frontend"), {
+    setHeaders: (res, path) => {
+      // Si el archivo es HTML
+      if (path.endsWith(".html")) {
+        res.setHeader("Content-Type", "text/html; charset=utf-8");
+      }
+      // Si es JS o JSON
+      else if (path.endsWith(".js")) {
+        res.setHeader("Content-Type", "application/javascript; charset=utf-8");
+      } else if (path.endsWith(".json")) {
+        res.setHeader("Content-Type", "application/json; charset=utf-8");
+      } else if (path.endsWith(".css")) {
+        res.setHeader("Content-Type", "text/css; charset=utf-8");
+      }
+    },
+  })
+);
 
 // Cualquier ruta que no sea API devuelve index.html (para routing SPA)
 app.get(/^(?!\/api).*/, (req, res) => {
