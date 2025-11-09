@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DigitalBeat - Tienda Online</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100">
+
+  <!-- HEADER -->
+  <header class="bg-violet-600 text-white py-4 shadow-md sticky top-0 z-50">
+    <h1 class="text-3xl font-bold text-center">DigitalBeat</h1>
+  </header>
+
+  <main class="container mx-auto mt-10 px-6">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Música</h2>
+    <div id="productos-musica" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    <div id="pag-music" class="flex justify-center mt-4 gap-2"></div>
+
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center mt-12">Audífonos</h2>
+    <div id="productos-audifonos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    <div id="pag-audio" class="flex justify-center mt-4 gap-2"></div>
+
+    <!-- Checkout Panel -->
+    <div id="checkout-panel" class="hidden fixed top-0 left-0 w-full h-full bg-black/50 flex justify-center items-center z-50">
+      <div class="bg-white p-6 rounded shadow-lg w-96">
+        <h2 class="text-xl font-bold mb-4">Checkout</h2>
+        <div>          
+        </div>
+        <div id="paypal-button-container" class="mt-4 max-h-[80vh] overflow-auto"></div>
+        <button id="btn-pagar" class="mt-4 bg-violet-600 text-white py-2 px-4 rounded hover:bg-violet-700 w-full">Pagar</button>
+        <button id="cerrar-checkout" class="mt-2 w-full py-2 border rounded">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Modal Registro -->
+    <div id="modal-register" class="hidden fixed top-0 left-0 w-full h-full bg-black/50 flex justify-center items-center z-50">
+      <div class="bg-white p-6 rounded shadow-lg w-96">
+        <h2 class="text-xl font-bold mb-4">Registro</h2>
+        <input type="text" id="reg-nombre" placeholder="Nombre" class="w-full mb-2 p-2 border rounded"/>
+        <input type="email" id="reg-email" placeholder="Email" class="w-full mb-2 p-2 border rounded"/>
+        <input type="password" id="reg-password" placeholder="Contraseña" class="w-full mb-2 p-2 border rounded"/>
+        <button id="btn-register" class="w-full bg-violet-600 text-white py-2 rounded hover:bg-violet-700">Registrar</button>
+        <button id="cerrar-register" class="mt-2 w-full py-2 border rounded">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Modal Login -->
+    <div id="modal-login" class="hidden fixed top-0 left-0 w-full h-full bg-black/50 flex justify-center items-center z-50">
+      <div class="bg-white p-6 rounded shadow-lg w-96">
+        <h2 class="text-xl font-bold mb-4">Login</h2>
+        <input type="email" id="login-email" placeholder="Email" class="w-full mb-2 p-2 border rounded"/>
+        <input type="password" id="login-password" placeholder="Contraseña" class="w-full mb-2 p-2 border rounded"/>
+        <button id="btn-login" class="w-full bg-violet-600 text-white py-2 rounded hover:bg-violet-700">Iniciar sesión</button>
+        <button id="cerrar-login" class="mt-2 w-full py-2 border rounded">Cancelar</button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Carrito flotante -->
+  <div id="carrito-panel" class="fixed right-4 bottom-4 w-80 max-w-full bg-white rounded-2xl shadow-xl p-4 z-50 hidden flex-col">
+    <h3 class="text-xl font-semibold mb-4">🛒 Tu Carrito</h3>
+    <div id="carrito-items" class="flex flex-col gap-2 max-h-96 overflow-y-auto"></div>
+    <div class="mt-4 flex justify-between items-center font-bold text-gray-800">
+      <span>Total:</span>
+      <span id="carrito-total">$0</span>
+    </div>
+
+    <button id="btn-checkout" class="mt-3 w-full bg-violet-600 text-white py-2 rounded hover:bg-violet-700">
+      Ir al checkout
+    </button>
+    <button id="cerrar-carrito" class="mt-3 w-full bg-red-500 text-white py-2 rounded hover:bg-red-600">Cerrar</button>
+  </div>
+
+  <!-- Botones Login/Registro -->
+  <div class="fixed top-4 right-4 flex gap-2 z-50">
+    <button id="btn-login-modal" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700">Login</button>
+    <button id="btn-register-modal" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Registro</button>
+  </div>
+
+  <!-- Botón para abrir carrito -->
+  <button id="btn-carrito" class="fixed right-4 bottom-4 bg-violet-600 text-white p-3 rounded-full shadow-lg hover:bg-violet-700 z-50">
+    🛒
+  </button>
+
+  <footer class="bg-violet-600 text-white text-center py-4 mt-16">
+    © 2025 DigitalBeat. Todos los derechos reservados.
+  </footer>
+
+  <script type="module" src="assets/app.js"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AarTeMXBlfSQv8qZ1rdRseUOlhcysvRmkuM5DL2KcxoL5A6E4J-IZwK1r20jS1EBzTLv-bfmxARymbUb&currency=MXN"></script>
+</body>
+</html>
