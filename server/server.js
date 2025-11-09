@@ -16,13 +16,14 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
-});
 
 // Middlewares
 app.use(express.json());
 app.use(cookieParser());
+app.use((req, res, next) => {
+  res.setHeader("Content-Type", "application/json; charset=utf-8");
+  next();
+});
 
 // --- API ---
 app.use("/api/products", productsRouter);
@@ -35,8 +36,10 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 
 // Cualquier ruta que no sea API devuelve index.html (para routing SPA)
 app.get(/^(?!\/api).*/, (req, res) => {
+  res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
+
 
 // Servidor
 app.listen(PORT, () => {
