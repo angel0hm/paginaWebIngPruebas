@@ -21,7 +21,9 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cookieParser());
 app.use((req, res, next) => {
-  res.setHeader("Content-Type", "application/json; charset=utf-8");
+  if (req.path.startsWith("/api")) {
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
+  }
   next();
 });
 
